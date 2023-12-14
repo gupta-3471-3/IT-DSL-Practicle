@@ -1,0 +1,50 @@
+import java.util.Scanner;
+abstract class Shape{
+    double val1, val2 ;
+    void input() /*member method*/
+    {
+        Scanner s = new Scanner(System.in);
+        System.out.print("Enter first value:");
+        val1 = s.nextDouble();
+        System.out.print("Enter second value:");
+        val2 = s.nextDouble();
+    }
+    abstract void compute_area();
+    //abstract doesnot have any defination but when any class is inherited, sub class has to write the defination of it//
+    
+    
+}
+class Triangle extends Shape   {
+        void compute_area()
+        {
+            double area ;
+            area = 1.0f/2.0f * val1 * val2 ;
+            System.out.println("Triangle area is:" +area);
+        }
+    }
+    class Rectangle extends Shape{
+        void compute_area()
+        {
+            double area ;
+            area =  val1 * val2 ;
+            System.out.println("Rectangle area is:" +area);
+        }
+    }
+
+public class DynamicBinding {
+    public static void main(String[] args){
+        Shape s; /*Reference variable*/
+        Triangle t = new Triangle();
+        Rectangle r = new Rectangle();
+        // this is dynamic binding because at run time it will decide which method to be called.
+        s = t;
+        s.input();
+        s.compute_area();
+        
+        s = r;
+        s.input();
+        s.compute_area();
+         
+    }
+         
+}

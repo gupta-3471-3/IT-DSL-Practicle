@@ -1,0 +1,132 @@
+import java.util.Scanner;
+interface PaymentProcessor {
+
+	  void pay(int amount);//interface method pay
+
+}
+
+class CreditCard implements PaymentProcessor {
+	  Scanner sc =new Scanner (System.in);
+	  String name;//declaration of name
+	  double CardNo;//declaration of CardNo
+	  
+	
+	  CreditCard(){ 
+		  super();
+		  System.out.println(" ");
+		  System.out.print("\tCard holder Name = ");
+		  this.name =sc.next();//taking Card holder Name as input from user
+		  System.out.print("\tCard Number = ");
+		  this.CardNo =sc.nextDouble();//taking Card Number as input from user
+		  
+		  System.out.println(" ");
+	  }
+	  
+	  
+	  public void pay(int amount) { 	//method for payment
+		  System.out.println("----------------------------------------------------------");
+	      System.out.println("Paying through CreditCard payment: Charging $" + amount);
+	      System.out.println("----------------------------------------------------------");
+	  }
+	  
+    }
+
+class PayPal implements PaymentProcessor {
+	
+	//Constructor of PayPal class
+	PayPal(){
+		super();
+		System.out.println("\nChecking Internet Connection........");  
+	   }
+	   
+	
+	 public void pay(int amount) { 	//method for payment
+		System.out.println("----------------------------------------------------------");
+		System.out.println("Paying through PayPal payment: Charging $" + amount);
+		System.out.println("----------------------------------------------------------");
+	  }
+
+	}
+
+class BitCoin implements PaymentProcessor {
+	Scanner sc =new Scanner (System.in);
+	String add;
+	   
+	//Constructor of BitCoin class
+	BitCoin(){
+		   super();//calling parent class constructor
+		   System.out.print("\nEnter Transaction 'Input Address' = ");//asking user of address
+		   add= sc.next();//taking 'INPUT ADDRESS' as input from user
+		   
+	   }
+	
+	
+	public void pay(int amount) { 	//method for payment
+		  System.out.println("----------------------------------------------------------");
+		    System.out.println("Paying through BitCoin payment: Charging $" + amount);
+		    System.out.println("----------------------------------------------------------");
+	  }
+
+}
+class Order {
+
+	private final PaymentProcessor paymentProcessor;
+	private final int amount;//declaration of amount
+	   
+	public Order(int amount, PaymentProcessor paymentProcessor) {
+	     this.amount = amount;
+	     this.paymentProcessor = paymentProcessor;
+	   }
+	   
+	public void process() {
+	     paymentProcessor.pay(amount);//calling pay method
+	   }
+
+}
+public class Main {
+	//calling static void main method
+	public static void main(String[] args) {
+		int c,amt=0;//declaration of c, amt
+		Order order;//reference of order assign to order obj
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			System.out.println();
+			//menu bar
+			System.out.println("**** SHOPING CART ****");
+			System.out.print("1.Credit Card \n2.PayPal \n3.BitCoin \n4.Exit");
+			System.out.print("\n\nEnter the Choice =");
+			c=sc.nextInt();//taking input from user
+			System.out.println("========================================================  ");
+			if(c==1||c==2||c==3) {//check whether 0<c<4
+				 System.out.print("\nEnter amount to be Tranfer = ");
+				 amt = sc.nextInt();//taking amt as input from user
+				 System.out.println(" ");
+			}
+			switch(c) {
+			 case 1://for input c ==1
+				  order = new Order(amt, new CreditCard());//creating obj of order class
+				  order.process();//calling process method of order class
+				 break;
+				 
+			 case 2://for input c == 2
+				  order = new Order(amt, new PayPal());//creating obj of order class
+				  order.process();//calling process method of order class
+				 break;
+				 
+			 case 3://for input c == 3
+				  order = new Order(amt, new BitCoin());//creating obj of order class
+				  order.process();//calling process method of order class
+				 break;
+				 
+			 case 4:
+				 System.out.println("\n!!!! Thank you For Shopping !!!! ");
+				 System.out.println(" ");
+				 return;
+				 
+			default:
+				System.out.println("Invalid Payment Mode !!!");
+				System.out.println("----------------------------------------------------------");
+			 }
+		}
+	}
+}
