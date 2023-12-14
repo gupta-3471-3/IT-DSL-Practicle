@@ -1,0 +1,200 @@
+
+
+
+import java.util.*;
+
+public class Complex {
+	float real, image;
+
+	public Complex() {
+	}
+
+	public Complex(float real, float image) {
+		this.real = real;
+		this.image = image;
+	}
+
+private Complex addComplex(Complex c1 , Complex c2) {
+
+	Complex temp = new Complex();
+	temp.real = c1.real + c2.real;
+	temp.image = c1.image + c2.image;
+	return temp;
+}
+
+private Complex subComplex(Complex c1 , Complex c2) {
+	Complex temp = new Complex();
+	temp.real = c1.real-c2.real;
+	temp.image= c1.image-c2.image;
+	return temp;
+}
+
+private Complex  mulComplex(Complex c1 , Complex c2) {
+	Complex temp = new Complex();
+	
+	temp.real =(c1.real * c2.real)-(c1.image * c2.image);
+	temp.image= (c1.real * c2.image) + (c1.image * c2.real);
+	return temp;
+}
+
+private Complex divComplex(Complex c1, Complex c2) {
+	Complex temp = new Complex();
+	float real,image,deno;
+	deno =(c2.real*c2.real + c2.image*c2.image);
+	temp.real = (c1.real*c2.real + c1.image*c2.image)/deno;
+	temp.image = (c2.real*c1.image- c1.real*c2.image)/deno;
+	return temp ;
+}
+
+public static void main(String[]args) {
+	Scanner sc = new Scanner(System.in);
+	
+	System.out.println("Enter first Real part");
+	float n1 = sc.nextFloat();
+	System.out.println("Enter first imaginary part");
+	float n2 = sc.nextFloat();
+	Complex c1= new Complex(n1,n2);
+	
+	System.out.println("Enter Second Real part");
+	float n3 = sc.nextFloat();
+	System.out.println("Enter Second imaginary part");
+	float n4 = sc.nextFloat();
+	Complex c2= new Complex(n3,n4);
+	Complex c3= new Complex();
+	
+	int check;
+	System.out.println("Complex Number Operations");
+	do
+	{
+		System.out.println("1 - Addition \n 2 - Sbtraction \n 3 - Multiplication \n 4 - Division");
+		System.out.println("Enter your Choice");
+		int ch = sc.nextInt();
+		
+		switch (ch) {
+		case 1:
+		      c3 = c3.addComplex(c1,c2);
+		      System.out.println("-------------------");
+		      System.out.println("First Complex No:" + c1.real + " + " + c1.image + "i");
+		      System.out.println("Second Complex No:" + c2.real + " + " + c2.image + "i");
+		      System.out.println("-------------------");
+		      System.out.println("Sum of Complex No:" + c3.real + " + " + c3.image + "i");
+		      System.out.println("-------------------");
+		      break;
+		      
+		 
+		 case 2:
+			 c3 = c3.subComplex(c1,c2);
+		      System.out.println("-------------------");
+		      System.out.println("First Complex No:" + c1.real + " + " + c1.image + "i");
+		      System.out.println("Second Complex No:" + c2.real + " + " + c2.image + "i");
+		      System.out.println("-------------------");
+		      System.out.println("sub of Complex No:" + c3.real + " + " + c3.image + "i");
+		      System.out.println("-------------------");
+		      break;
+	      
+		 case 3:
+			 c3 = c3.mulComplex(c1,c2);
+		      System.out.println("-------------------");
+		      System.out.println("First Complex No:" + c1.real + " + " + c1.image + "i");
+		      System.out.println("Second Complex No:" + c2.real + " + " + c2.image + "i");
+		      System.out.println("-------------------");
+		      System.out.println("mul of Complex No:" + c3.real + " + " + c3.image + "i");
+		      System.out.println("-------------------");
+		      break;
+	      
+		 case 4:
+			 c3 = c3.divComplex(c1,c2);
+		      System.out.println("-------------------");
+		      System.out.println("First Complex No:" + c1.real + " + " + c1.image + "i");
+		      System.out.println("Second Complex No:" + c2.real + " + " + c2.image + "i");
+		      System.out.println("-------------------");
+		      System.out.println("Div of Complex No:"+ c3.real + " + " + c3.image + "i");
+		      System.out.println("-------------------");
+		      break;
+		      
+		      default :
+		    	  System.out.println("Invalid Choice");
+		    	  break;
+		}
+		System.out.println("Do you want to continue press 1");
+		check = sc.nextInt();
+	}while(check == 1);
+	
+}
+}
+
+
+
+
+
+
+
+
+
+/*OUTPUT: 
+
+
+Enter first Real part
+997.4
+Enter first imaginary part
+345
+Enter Second Real part
+56.78
+Enter Second imaginary part
+97
+Complex Number Operations
+1 - Addition 
+ 2 - Sbtraction 
+ 3 - Multiplication 
+ 4 - Division
+Enter your Choice
+1
+-------------------
+First Complex No:997.4 + 345.0i
+Second Complex No:56.78 + 97.0i
+-------------------
+Sum of Complex No:1054.18 + 442.0i
+-------------------
+Do you want to continue press 1
+1
+1 - Addition 
+ 2 - Sbtraction 
+ 3 - Multiplication 
+ 4 - Division
+Enter your Choice
+2
+-------------------
+First Complex No:997.4 + 345.0i
+Second Complex No:56.78 + 97.0i
+-------------------
+sub of Complex No:940.62 + 248.0i
+-------------------
+Do you want to continue press 1
+1
+1 - Addition 
+ 2 - Sbtraction 
+ 3 - Multiplication 
+ 4 - Division
+Enter your Choice
+3
+-------------------
+First Complex No:997.4 + 345.0i
+Second Complex No:56.78 + 97.0i
+-------------------
+mul of Complex No:23167.371 + 116336.91i
+-------------------
+Do you want to continue press 1
+1
+1 - Addition 
+ 2 - Sbtraction 
+ 3 - Multiplication 
+ 4 - Division
+Enter your Choice
+4
+-------------------
+First Complex No:997.4 + 345.0i
+Second Complex No:56.78 + 97.0i
+-------------------
+Div of Complex No:7.131924 + -6.107725i
+-------------------
+Do you want to continue press 1*/
